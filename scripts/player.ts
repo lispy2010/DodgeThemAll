@@ -225,8 +225,14 @@ class Player {
             score = 0;
             level++;
             screenFlashAlpha = .8;
-            spawnEnemy();
-            sndNextLevel.play();
+            if (level % 5 === 0) {
+                // Every 5 levels, spawn a boss enemy
+                enemies.push(new BossEnemy());
+                sndError.play();
+            } else {
+                spawnEnemy();
+                sndNextLevel.play();
+            }
         }
 
         // Move horizontally
