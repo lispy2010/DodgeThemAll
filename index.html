@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dodge them all!</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Buttons in the pause menu -->
+    <button id="btn-pause-main-menu" class="btn">Main menu</button>
+
+    <!-- Buttons in the main menu -->
+    <button id="btn-main-menu-play" class="btn">Play</button>
+    <button id="btn-main-menu-options" class="btn">Options</button>
+    <button id="btn-main-menu-sandbox" class="btn">Sandbox</button>
+
+    <!-- Buttons in the options -->
+    <button id="btn-options-back" class="btn">&lt;</button>
+    <button id="btn-options-lang" class="btn">Language: en</button>
+    <button id="btn-options-show-trail" class="btn">Show trail: YES</button>
+
+    <!-- Game over buttons-->
+    <button id="btn-game-over-retry" class="btn">Retry</button>
+    <button id="btn-game-over-main-menu" class="btn">Main menu</button>
+
+    <!-- Buttons in sandbox -->
+    <button id="btn-sandbox-setvel" class="btn">Set velocity</button>
+    <button id="btn-sandbox-color-red" class="btn"></button>
+    <button id="btn-sandbox-color-blue" class="btn"></button>
+    <button id="btn-sandbox-color-green" class="btn"></button>
+    <button id="btn-sandbox-color-white" class="btn"></button>
+    <button id="btn-sandbox-color-cyan" class="btn"></button>
+    <button id="btn-sandbox-color-magenta" class="btn"></button>
+    <button id="btn-sandbox-color-yellow" class="btn"></button>
+    <button id="btn-sandbox-color-dark-red" class="btn"></button>
+    <button id="btn-sandbox-color-dark-blue" class="btn"></button>
+    <button id="btn-sandbox-color-dark-green" class="btn"></button>
+    <button id="btn-sandbox-color-gray" class="btn"></button>
+    <button id="btn-sandbox-color-dark-cyan" class="btn"></button>
+    <button id="btn-sandbox-color-dark-magenta" class="btn"></button>
+    <button id="btn-sandbox-color-dark-yellow" class="btn"></button>
+    <button id="btn-sandbox-color-random" class="btn">?</button>
+    <button id="btn-sandbox-color-custom" class="btn">!</button>
+    <button id="btn-sandbox-reset-enemy" class="btn">Reset enemy</button>
+    <button id="btn-sandbox-save-enemy" class="btn">Save enemy</button>
+
+    <!-- Buttons in shop -->
+    <button id="btn-shop-buy-add-hp" class="btn" tabindex="-1"></button>
+
+    <!-- Text boxes in sandbox -->
+    <input type="number" id="txt-sandbox-velx" class="txt" placeholder="Velocity X">
+    <input type="number" id="txt-sandbox-vely" class="txt" placeholder="Velocity Y">
+
+    <!-- Sandbox custom color dialog -->
+    <div id="dlg-sandbox-custom-color" class="dlg">
+        <h3 class="dlg-header">Custom color</h3>
+        <input type="number" id="txt-sandbox-custom-color-r" placeholder="Red" class="txt"><p></p>
+        <input type="number" id="txt-sandbox-custom-color-g" placeholder="Green" class="txt"><p></p>
+        <input type="number" id="txt-sandbox-custom-color-b" placeholder="Blue" class="txt"><p></p>
+        <button class="dlg-ok btn" id="btn-sandbox-custom-color-ok">OK</button><p></p>
+        <button class="dlg-cancel btn" id="btn-sandbox-custom-color-cancel">Cancel</button>
+    </div>
+
+    <!-- Canvas for drawing the game -->
+    <canvas id="canvas" width="800" height="600">
+        <!-- Images -->
+        <img src="img/player_default.png" id="img-skin-default">
+        <img src="img/player_creeper.png" id="img-skin-creeper">
+        <img src="img/player_mask.png" id="img-skin-mask">
+        <img src="img/player_chicken.png" id="img-skin-chicken">
+        <img src="img/player_rainbow.png" id="img-skin-rainbow">
+    </canvas>
+
+    <!-- Splash screen -->
+    <div id="splash">
+        <img src="img/lispy2010.png" alt="" id="splash-img">
+        <span id="splash-game-by">Game by</span>
+        <span id="splash-creator">lispy2010</span>
+    </div>
+
+    <!-- Scripts -->
+    <script src="scripts/log.js"></script>
+    <script src="scripts/lang.js"></script>
+    <script src="scripts/particle.js"></script>
+    <script src="scripts/hitbox.js"></script>
+    <script src="scripts/coin.js"></script>
+    <script src="scripts/enemy.js"></script>
+    <script src="scripts/bgeffect.js"></script>
+    <script src="scripts/trail.js"></script>
+    <script src="scripts/player.js"></script>
+    <script src="scripts/main.js"></script>
+
+    <!-- Start script -->
+    <script>
+        const showSplash = true;
+        if (showSplash) {
+            // get everything inside splash screen
+            let splashImg = document.getElementById("splash-img");
+            let splashGameBy = document.getElementById("splash-game-by");
+            let splashCreator = document.getElementById("splash-creator");
+
+            // and get splash
+            let splash = document.getElementById("splash");
+
+            // make everything in the splash screen invisible
+            splashImg.style.opacity = 0;
+            splashGameBy.style.opacity = 0;
+            splashCreator.style.opacity = 0;
+
+            // fade in method
+            function fadeIn(element) {
+                let op = 0;
+                let timer = setInterval(function() {
+                    if (op >= 1) {
+                        clearInterval(timer);
+                    }
+                    element.style.opacity = op;
+                    op += 0.1;
+                }, 50);
+            }
+
+            // fade out method
+            function fadeOut(element) {
+                let op = 1;
+                let timer = setInterval(function() {
+                    if (op <= 0) {
+                        clearInterval(timer);
+                    }
+                    element.style.opacity = op;
+                    op -= 0.1;
+                }, 50);
+            }
+
+            // make splash screen fade in
+            fadeIn(splashImg);
+            fadeIn(splashGameBy);
+            fadeIn(splashCreator);
+
+            // make splash screen fade out after 2 seconds and start game
+            setTimeout(() => {
+                fadeOut(splashImg);
+                fadeOut(splashGameBy);
+                fadeOut(splashCreator);
+                setTimeout(() => {
+                    splash.style.display = "none";
+                    update();
+                }, 1000);
+            }, 2000);
+        } else {
+            // make splash screen invisible
+            document.getElementById("splash").style.display = "none";
+            
+            update();
+        }
+    </script>
+</body>
+</html>

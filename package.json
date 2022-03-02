@@ -1,0 +1,17 @@
+{
+  "name": "dodgethemall",
+  "version": "0.3",
+  "description": "game where you avoid squares",
+  "main": "main.js",
+  "productName": "Dodge Them All",
+  "dependencies": {
+    "electron": "^16.0.7"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "lispy2010",
+  "license": "ISC"
+}

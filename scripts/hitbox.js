@@ -1,0 +1,1 @@
+class Hitbox { constructor(x, y, w, h) { this.x = x; this.y = y; this.w = w; this.h = h; } intersects(other) { return !(other.x > this.x + this.w || other.x + other.w < this.x || other.y > this.y + this.h || other.y + other.h < this.y); } }

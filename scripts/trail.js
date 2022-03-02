@@ -1,0 +1,1 @@
+class Trail { constructor(x, y, w, h, r, g, b) { this.x = x; this.y = y; this.w = w; this.h = h; this.r = r; this.g = g; this.b = b; this.a = 1; } draw() { ctx.fillStyle = `rgba(${this.r}, ${this.g}, ${this.b}, ${this.a})`; ctx.fillRect(this.x, this.y, this.w, this.h); } update() { this.a -= .05; } }

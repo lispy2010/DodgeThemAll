@@ -1,0 +1,505 @@
+body {
+    overflow: hidden;
+    margin: 0;
+    background-color: black;
+}
+
+.btn {
+    font-family: press-start;
+    position: absolute;
+    background-color: gray;
+    border: 2px solid darkgray;
+    color: white;
+    transition-duration: .4s;
+}
+
+.btn:hover {
+    background-color: darkgray;
+    cursor: pointer;
+}
+
+.btn:active {
+    transition-duration: .2s;
+    background-color: rgb(73, 73, 73);
+}
+
+.txt {
+    font-family: press-start;
+    position: absolute;
+    background-color: gray;
+    border: 2px solid darkgray;
+    color: white;
+    transition-duration: .4s;
+    outline: none;
+}
+
+.txt:hover {
+    background-color: darkgray;
+    cursor: pointer;
+}
+
+.txt:focus {
+    background-color: rgb(73, 73, 73);
+}
+
+.dlg {
+    /* i am using the legacy method of centering the dialog, since flex doesnt work :( */
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border: 2px solid white;
+    background-color: black;
+    color: white;
+    font-family: press-start;
+    padding: 10px;
+}
+
+.dlg > .btn, .dlg > input {
+    position: static;
+}
+
+input::-webkit-inner-spin-button,
+input::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0px;
+}
+
+::placeholder {
+    color: rgb(172, 172, 172);
+}
+
+#btn-pause-main-menu {
+    margin-left: 15px;
+    margin-top: 67px;
+}
+
+#btn-pause-main-menu:hover {
+    margin-left: 14px;
+    margin-top: 66px;
+}
+
+#btn-main-menu-play {
+    width: 128px;
+    height: 64px;
+    font-size: large;
+    margin-left: 310px;
+    margin-top: 210px;
+}
+
+#btn-main-menu-options {
+    width: 128px;
+    height: 64px;
+    font-size: medium;
+    margin-left: 310px;
+    margin-top: 279px;
+}
+
+#btn-main-menu-sandbox {
+    width: 128px;
+    height: 64px;
+    font-size: medium;
+    margin-left: 310px;
+    margin-top: 348px;
+}
+
+#btn-options-back {
+    font-size: medium;
+    margin-left: 20px;
+    margin-top: 20px;
+}
+
+#btn-options-lang {
+    width: 160px;
+    height: 64px;
+    font-size: medium;
+    margin-left: 100px;
+    margin-top: 200px;
+}
+
+#btn-options-show-trail {
+    width: 160px;
+    height: 64px;
+    font-size: medium;
+    margin-left: 100px;
+    margin-top: 270px;
+}
+
+#btn-game-over-retry {
+    width: 128px;
+    height: 64px;
+    font-size: large;
+    margin-left: 310px;
+    margin-top: 279px;
+}
+
+#btn-game-over-main-menu {
+    width: 128px;
+    height: 64px;
+    font-size: large;
+    margin-left: 310px;
+    margin-top: 348px;
+}
+
+#btn-sandbox-setvel {
+    font-size: medium;
+    margin-left: 290px;
+    margin-top: 106px;
+}
+
+#btn-sandbox-color-red {
+    width: 40px;
+    height: 40px;
+    margin-left: 290px;
+    margin-top: 190px;
+    background-color: red;
+}
+
+#btn-sandbox-color-red:hover {
+    background-color: rgb(252, 91, 91);
+}
+
+#btn-sandbox-color-red:active {
+    background-color: rgb(173, 0, 0);
+}
+
+#btn-sandbox-color-blue {
+    width: 40px;
+    height: 40px;
+    margin-left: 336px;
+    margin-top: 190px;
+    background-color: blue;
+}
+
+#btn-sandbox-color-blue:hover {
+    background-color: rgb(91, 91, 252);
+}
+
+#btn-sandbox-color-blue:active {
+    background-color: rgb(0, 0, 173);
+}
+
+#btn-sandbox-color-green {
+    width: 40px;
+    height: 40px;
+    margin-left: 382px;
+    margin-top: 190px;
+    background-color: lime;
+}
+
+#btn-sandbox-color-green:hover {
+    background-color: rgb(91, 252, 91);
+}
+
+#btn-sandbox-color-green:active {
+    background-color: rgb(0, 173, 0);
+}
+
+#btn-sandbox-color-white {
+    width: 40px;
+    height: 40px;
+    margin-left: 428px;
+    margin-top: 190px;
+    background-color: white;
+}
+
+#btn-sandbox-color-white:active {
+    background-color: rgb(173, 173, 173);
+}
+
+#btn-sandbox-color-cyan {
+    width: 40px;
+    height: 40px;
+    margin-left: 474px;
+    margin-top: 190px;
+    background-color: cyan;
+}
+
+#btn-sandbox-color-cyan:hover {
+    background-color: rgb(91, 252, 252);
+}
+
+#btn-sandbox-color-cyan:active {
+    background-color: rgb(0, 173, 173);
+}
+
+#btn-sandbox-color-magenta {
+    width: 40px;
+    height: 40px;
+    margin-left: 520px;
+    margin-top: 190px;
+    background-color: magenta;
+}
+
+#btn-sandbox-color-magenta:hover {
+    background-color: rgb(252, 91, 252);
+}
+
+#btn-sandbox-color-magenta:active {
+    background-color: rgb(173, 0, 173);
+}
+
+#btn-sandbox-color-yellow {
+    width: 40px;
+    height: 40px;
+    margin-left: 566px;
+    margin-top: 190px;
+    background-color: yellow;
+}
+
+#btn-sandbox-color-yellow:hover {
+    background-color: rgb(252, 252, 91);
+}
+
+#btn-sandbox-color-yellow:active {
+    background-color: rgb(173, 173, 0);
+}
+
+#btn-sandbox-color-dark-red {
+    width: 40px;
+    height: 40px;
+    margin-left: 290px;
+    margin-top: 236px;
+    background-color: maroon;
+}
+
+#btn-sandbox-color-dark-red:hover {
+    background-color: rgb(125, 46, 46);
+}
+
+#btn-sandbox-color-dark-red:active {
+    background-color: rgb(46, 0, 0);
+}
+
+#btn-sandbox-color-dark-blue {
+    width: 40px;
+    height: 40px;
+    margin-left: 336px;
+    margin-top: 236px;
+    background-color: navy;
+}
+
+#btn-sandbox-color-dark-blue:hover {
+    background-color: rgb(46, 46, 125);
+}
+
+#btn-sandbox-color-dark-blue:active {
+    background-color: rgb(0, 0, 46);
+}
+
+#btn-sandbox-color-dark-green {
+    width: 40px;
+    height: 40px;
+    margin-left: 382px;
+    margin-top: 236px;
+    background-color: green;
+}
+
+#btn-sandbox-color-dark-green:hover {
+    background-color: rgb(46, 125, 46);
+}
+
+#btn-sandbox-color-dark-green:active {
+    background-color: rgb(0, 46, 0);
+}
+
+#btn-sandbox-color-gray {
+    width: 40px;
+    height: 40px;
+    margin-left: 428px;
+    margin-top: 236px;
+    background-color: gray;
+}
+
+#btn-sandbox-color-gray:hover {
+    background-color: rgb(134, 134, 134);
+}
+
+#btn-sandbox-color-gray:active {
+    background-color: rgb(46, 46, 46);
+}
+
+#btn-sandbox-color-dark-cyan {
+    width: 40px;
+    height: 40px;
+    margin-left: 474px;
+    margin-top: 236px;
+    background-color: darkcyan;
+}
+
+#btn-sandbox-color-dark-cyan:hover {
+    background-color: rgb(65, 172, 172)
+}
+
+#btn-sandbox-color-dark-cyan:active {
+    background-color: rgb(1, 102, 102);
+}
+
+#btn-sandbox-color-dark-magenta {
+    width: 40px;
+    height: 40px;
+    margin-left: 520px;
+    margin-top: 236px;
+    background-color: darkmagenta;
+}
+
+#btn-sandbox-color-dark-magenta:hover {
+    background-color: rgb(190, 2, 190);
+}
+
+#btn-sandbox-color-dark-magenta:active {
+    background-color: rgb(95, 0, 95);
+}
+
+#btn-sandbox-color-dark-yellow {
+    width: 40px;
+    height: 40px;
+    margin-left: 566px;
+    margin-top: 236px;
+    background-color: olive;
+}
+
+#btn-sandbox-color-dark-yellow:hover {
+    background-color: rgb(173, 173, 0);
+}
+
+#btn-sandbox-color-dark-yellow:active {
+    background-color: rgb(97, 97, 1);
+}
+
+#btn-sandbox-color-random {
+    width: 40px;
+    height: 40px;
+    margin-left: 612px;
+    margin-top: 190px;
+    animation: rainbow 2s infinite;
+}
+
+#btn-sandbox-color-custom {
+    width: 40px;
+    height: 40px;
+    margin-left: 612px;
+    margin-top: 236px;
+    animation: rgb 1s infinite;
+}
+
+#btn-sandbox-reset-enemy {
+    width: 128px;
+    height: 64px;
+    margin-left: 612px;
+    margin-top: 475px;
+    font-size: large;
+}
+
+#btn-sandbox-save-enemy {
+    width: 128px;
+    height: 64px;
+    margin-left: 479px;
+    margin-top: 475px;
+    font-size: large;
+    display: none;
+}
+
+#btn-sandbox-reset-enemy:hover {
+    background-color: red;
+}
+
+#btn-shop-buy-add-hp {
+    width: 85px;
+    height: 32px;
+    font-size: medium;
+    margin-left: 285px;
+    margin-top: 176px;
+}
+
+#txt-sandbox-velx {
+    width: 137px;
+    margin-top: 76px;
+    margin-left: 290px;
+}
+
+#txt-sandbox-vely {
+    width: 137px;
+    margin-top: 76px;
+    margin-left: 450px;
+}
+
+#splash {
+    width: 100%;
+    height: 100%;
+    color: white;
+    background-color: black;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#splash-img {
+    transform: scale(1.3);
+    position: absolute;
+    left: 160px;
+    top: 200px;
+}
+
+#splash-game-by {
+    position: absolute;
+    left: 370px;
+    top: 200px;
+    font-family: press-start;
+    font-size: 20px;
+}
+
+#splash-creator {
+    position: absolute;
+    left: 365px;
+    top: 230px;
+    font-family: press-start;
+    font-size: 40px;
+}
+
+@keyframes rainbow {
+    0% {
+        background-color: rgb(255, 0, 0);
+    }
+
+    17% {
+        background-color: rgb(255, 128, 0);
+    }
+
+    33% {
+        background-color: rgb(255, 255, 0);
+    }
+
+    50% {
+        background-color: rgb(0, 255, 0);
+    }
+
+    64% {
+        background-color: rgb(0, 255, 255);
+    }
+
+    85% {
+        background-color: rgb(0, 0, 255);
+    }
+
+    100% {
+        background-color: rgb(255, 0, 255);
+    }
+}
+
+@keyframes rgb {
+    33% {
+        background-color: red;
+    }
+    66% {
+        background-color: lime;
+    }
+    100% {
+        background-color: blue;
+    }
+}
+
+@font-face {
+    font-family: press-start;
+    src: url("fonts/PressStart2P-Regular.ttf");
+}
