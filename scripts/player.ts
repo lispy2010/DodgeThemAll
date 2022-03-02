@@ -129,7 +129,7 @@ class Player {
             }
             if (ev.key == "F10") {
                 // Spawn some boss enemy
-                enemies.push(new BossEnemy(50, 100));
+                enemies.push(new BossEnemy());
             }
         });
 
