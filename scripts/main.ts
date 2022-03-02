@@ -19,6 +19,8 @@ const sndCoinAppear = new Audio("sounds/coinappear.wav");
 const sndReset = new Audio("sounds/reset.wav");
 const sndLoad = new Audio("sounds/load.wav");
 const sndBuy = new Audio("sounds/buy.wav");
+const sndBossBoom = new Audio("sounds/bossboom.wav");
+const sndBossDie = new Audio("sounds/bossdie.wav");
 
 log("Loaded sounds");
 
@@ -40,10 +42,10 @@ const ctx = canvas.getContext("2d");
 /**
  * @author GameAlchemist https://stackoverflow.com/questions/28023696/html-canvas-animation-which-incorporates-a-shaking-effect
  */
-function shakeScreen() {
+function shakeScreen(d?: number) {
     ctx.save();
-    let dx = Math.random() * 20;
-    let dy = Math.random() * 20;
+    let dx = Math.random() * (d || 20);
+    let dy = Math.random() * (d || 20);
     ctx.translate(dx, dy);
 }
 
