@@ -1,4 +1,5 @@
 @echo off
+rem This file should be called from scripts directory!
 call compile
-python3 minify.py
+python minify.py
 npx electron ../main.js
