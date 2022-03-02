@@ -23,5 +23,9 @@ To move the player, you can use WASD or the arrow keys. To pause the game, use E
 ## Sandbox mode (**Unfinished!**)
 In sandbox mode, you can create an enemy and change its properties like speed, color, size, etc. And by pressing Space, you can summon an AI player.
 
+## How to run the game from source
+To run the game from source code, you have to be in `scripts` folder. Then, if you are incmd, run `run`, if you are in PowerShell, run `./run` and if you are in Linux or Mac, type `bash run.sh`.
+
 ## Credits
-This game is made by lispy2010. I hope you enjoy this game :)
+This game is made with <3 by lispy2010. I hope you enjoy this game :)
+Sound effects are made using Bfxr.
