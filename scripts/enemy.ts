@@ -843,10 +843,24 @@ class BossEnemyBullet extends Enemy {
 class BossEnemy extends Enemy {
     // Time since last shot
     timeSinceLastShot: number = 0;
+    startLevel: number;
 
-    constructor(x: number, y: number) {
-        super(x, y);
+    cutscene: boolean;
+
+    constructor() {
+        super(100, -128);
         this.velX = 10;
+        this.velY = 3;
+        this.startLevel = level;
+        this.cutscene = true;
+
+        setTimeout(() => {
+            this.velY = 0;
+
+            setTimeout(() => {
+                this.cutscene = false;
+            }, 500);
+        }, 1000);
     }
 
     draw(): void {
@@ -864,30 +878,50 @@ class BossEnemy extends Enemy {
     }
 
     update(_: Player): void {
-        // Move
-        this.x += this.velX;
-
-        // If we reached the left or right edge of the screen, reverse direction
-        if (this.x < 0 || this.x > canvas.width - 64) {
-            this.velX *= -1;
-            // Spawn particles
-            for (let i = 0; i < 10; i++) {
-                particles.push(new Particle(this.x + 64, this.y + 64, { x: Math.random() * 6 - 3, y: Math.random() * 6 - 3 }, Math.floor(Math.random() * 12) + 1, {
+        if (level > this.startLevel) {
+            // Explode into particles, shake and remove boss
+            for (let i = 0; i < 50; i++) {
+                particles.push(new Particle(this.x, this.y, { x: Math.random() * 20 - 3, y: Math.random() * 20 - 3 }, Math.floor(Math.random() * 15) + 1, {
                     r: 255,
                     g: 0,
                     b: 0
                 }, 120));
             }
-            shakeScreen();
+            sndBossDie.play();
+            enemies.splice(enemies.indexOf(this), 1);
+            shakeScreen(190);
+            return;
         }
 
-        // Update time since last shot
-        this.timeSinceLastShot++;
+        if (this.cutscene) {
+            this.y += this.velY;
+        } else {
+            // Move
+            this.x += this.velX;
 
-        // If time since last shot is greater than or equal to 1000, shoot a bullet
-        if (this.timeSinceLastShot >= 25) {
-            this.timeSinceLastShot = 0;
-            enemies.push(new BossEnemyBullet(this.x + 64, this.y + 64));
+            // If we reached the left or right edge of the screen, reverse direction
+            if (this.x < 0 || this.x > canvas.width - 64) {
+                this.velX *= -1;
+                // Spawn particles
+                for (let i = 0; i < 10; i++) {
+                    particles.push(new Particle(this.x + 64, this.y + 64, { x: Math.random() * 6 - 3, y: Math.random() * 6 - 3 }, Math.floor(Math.random() * 12) + 1, {
+                        r: 255,
+                        g: 0,
+                        b: 0
+                    }, 120));
+                }
+                sndBossBoom.play();
+                shakeScreen(50);
+            }
+
+            // Update time since last shot
+            this.timeSinceLastShot++;
+
+            // If time since last shot is greater than or equal to 1000, shoot a bullet
+            if (this.timeSinceLastShot >= 25) {
+                this.timeSinceLastShot = 0;
+                enemies.push(new BossEnemyBullet(this.x + 64, this.y + 64));
+            }
         }
 
         // Update trail segments
