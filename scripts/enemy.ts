@@ -19,6 +19,11 @@ abstract class Enemy {
     abstract draw(): void;
     abstract update(player: Player): void; // The player parameter is for enemies that need player's position.
 
+    // This method is for updating that is fixed for all enemies.
+    fixedUpdate(): void {
+
+    }
+
     get hitbox(): Hitbox {
         return new Hitbox(this.x, this.y, 16, 16);
     }
@@ -944,5 +949,65 @@ class BossEnemy extends Enemy {
 
     get hitbox(): Hitbox {
         return new Hitbox(this.x, this.y, 128, 128);
+    }
+}
+
+// Snake enemy class.
+// Snake enemy moves in a sine wave.
+// They are purple.
+class SnakeEnemy extends Enemy {
+    waviness: number;
+
+    constructor(x: number, y: number) {
+        super(x, y);
+        // X Speed is between 4 and 7
+        this.velX = Math.floor(Math.random() * 5) + 4;
+
+        this.velY = 0;
+
+        // Make waviness from 3 to 10
+        this.waviness = Math.floor(Math.random() * 7) + 3;
+    }
+
+    draw(): void {
+        // Draw trail segments
+        this.trails.forEach(t => {
+            t.draw();
+        });
+
+        // Draw enemy
+        ctx.fillStyle = "purple";
+        ctx.fillRect(this.x, this.y, 16, 16);
+    }
+
+    update(_: Player): void {
+        // Move
+        this.x += this.velX;
+        this.y += this.velY;
+
+        // Update Y velocity to be a sine wave
+        this.velY = Math.sin(this.x / 30) * this.waviness;
+
+        // If we reached the left or right edge of the screen, reverse direction
+        if (this.x < 0 || this.x > canvas.width - 16) {
+            this.velX *= -1;
+        }
+
+        // If we reached the top or bottom edge of the screen, reverse direction
+        if (this.y > canvas.height - 16) {
+            this.y = -16;
+        }
+
+        // Update trail segments
+        this.trails.forEach((t, i) => {
+            // If trail segment is transparent, remove it
+            if (t.a <= 0) {
+                this.trails.splice(i, 1);
+            }
+            t.update();
+        });
+
+        // Add a trail segment
+        this.trails.push(new Trail(this.x, this.y, 16, 16, 128, 0, 128));
     }
 }
