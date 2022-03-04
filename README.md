@@ -15,6 +15,7 @@ And about the colorful squares, which are actually enemies, here is a list of th
 * The smart guy. Because he is smart, he can calculate where exctly to go to get the player. His movement may vary.
 * The brown guy. He is slow... and has the same moving pattern as the red guy.
 * Walking guy. He does not care about what the player is doing, he just moves wherever he wants.
+* * Snake guy. He is a snake, and he moves in a sine wave.
 * And finally, the boss. He is very big and shoots orange bullets. He spawns every sixth level.
 
 ## How to play
